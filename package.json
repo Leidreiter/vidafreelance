@@ -1,7 +1,7 @@
 {
-  "name": "vida-freelancer",
+  "name": "vida-freelance",
   "version": "1.0.0",
-  "description": "Vida freelancer, un podcast diferente",
+  "description": "Vida freelance, un podcast diferente",
   "type": "module",
   "scripts": {
     "sass": "sass --watch src/scss:build/css",

@@ -60,20 +60,17 @@
 }
 .bg1{
     background: url('/src/img/recursos/pdf.png');
-    background-size: contain;
+    background-size: 20rem 20rem;
     background-position: top;
     background-repeat: no-repeat;
+    background-color: #111111;
 }
 .recurso {
     display: flex;
     flex-direction: column;
     justify-content: flex-end;
-    height: 40rem;
+    height: 45rem;
     border-radius: 12px;
-
-    @include m.tablet{
-        height: 60rem;
-    }
 }
 
 .recurso-title {
