@@ -66,19 +66,30 @@
 /* CARRUSEL */
 .carousel-wrapper {
   width: 100%;
-  overflow: hidden; /* Corta extremos */
+  overflow: hidden; 
 }
 
 .carousel-track {
   display: flex;
   gap: 20px;
   padding: 20px;
-  animation: moveCarousel 20s linear infinite;
+  animation: none;
+}
+
+@media (max-width: 768px) {
+  .carousel-track {
+    animation: moveCarousel 20s linear infinite;
+  }
 }
 
 .carousel-track.is-manual {
-  animation: none;
-  transition: transform .5s ease;
+  animation: none !important;
+}
+
+@media (max-width: 768px) {
+  .carousel-track.is-manual {
+    transition: transform .5s ease;
+  }
 }
 
 @keyframes moveCarousel {
@@ -106,7 +117,7 @@
   margin-bottom: 15px;
 }
 .cap1 {
-  background: url('/src/img/capitulos/01.jpeg') center/cover no-repeat;
+  background: url('/src/img/capitulos/01.png') center/cover no-repeat;
 }
 .cap2 {
   background: url('/src/img/capitulos/02.jpeg') center/cover no-repeat;

@@ -675,7 +675,7 @@ body > section {
 }
 .contenido-hero .titulo-container .copy {
   font-size: 1.6rem;
-  color: grey;
+  color: rgb(176, 176, 176);
   max-width: 600px;
   font-family: "Montserrat", sans-serif;
   text-transform: uppercase;
@@ -691,7 +691,7 @@ body > section {
   padding: 15px 0;
   overflow: hidden;
   z-index: 10;
-  border-top: 1px solid grey;
+  border-top: 1px solid rgb(176, 176, 176);
 }
 .promo-banner .promo-track {
   display: flex;
@@ -784,7 +784,7 @@ body > section {
   justify-content: space-between;
   align-items: center;
   flex-direction: column;
-  border-bottom: 1px solid grey;
+  border-bottom: 1px solid rgb(176, 176, 176);
   padding: 2rem 0;
 }
 @media (min-width: 768px) {
@@ -806,7 +806,7 @@ body > section {
 }
 
 .copy {
-  color: grey;
+  color: rgb(176, 176, 176);
   text-transform: uppercase;
   font-size: 1.8rem;
   text-align: center;
@@ -924,21 +924,30 @@ body > section {
 /* CARRUSEL */
 .carousel-wrapper {
   width: 100%;
-  overflow: hidden; /* Corta extremos */
+  overflow: hidden;
 }
 
 .carousel-track {
   display: flex;
   gap: 20px;
   padding: 20px;
-  animation: moveCarousel 20s linear infinite;
-}
-
-.carousel-track.is-manual {
   animation: none;
-  transition: transform 0.5s ease;
 }
 
+@media (max-width: 768px) {
+  .carousel-track {
+    animation: moveCarousel 20s linear infinite;
+  }
+}
+.carousel-track.is-manual {
+  animation: none !important;
+}
+
+@media (max-width: 768px) {
+  .carousel-track.is-manual {
+    transition: transform 0.5s ease;
+  }
+}
 @keyframes moveCarousel {
   from {
     transform: translateX(0);
@@ -968,7 +977,7 @@ body > section {
 }
 
 .cap1 {
-  background: url("/src/img/capitulos/01.jpeg") center/cover no-repeat;
+  background: url("/src/img/capitulos/01.png") center/cover no-repeat;
 }
 
 .cap2 {
@@ -1088,21 +1097,10 @@ body > section {
 }
 
 .bg1 {
-  background: url("/src/img/capitulos/01.jpeg");
-  background-size: cover;
-  background-position: center;
-}
-
-.bg2 {
-  background: url("/src/img/capitulos/02.jpeg");
-  background-size: cover;
-  background-position: center;
-}
-
-.bg3 {
-  background: url("/src/img/capitulos/03.jpeg");
-  background-size: cover;
-  background-position: center;
+  background: url("/src/img/recursos/pdf.png");
+  background-size: contain;
+  background-position: top;
+  background-repeat: no-repeat;
 }
 
 .recurso {
@@ -1282,7 +1280,7 @@ body > section {
 .sobre-podcast .sp-description {
   max-width: 768px;
   margin: 2rem auto;
-  color: grey;
+  color: rgb(176, 176, 176);
   line-height: 1.5;
   text-wrap: balance;
   text-transform: uppercase;
@@ -1290,7 +1288,7 @@ body > section {
 .sobre-podcast .separador {
   width: 8rem;
   height: 2px;
-  background-color: grey;
+  background-color: rgb(176, 176, 176);
   margin: 0 auto;
 }
 .sobre-podcast .webp .sp-parallax {
@@ -1406,7 +1404,7 @@ body > section {
   font-family: "Horizon", sans-serif;
 }
 .sobre-mi .sm-left .sm-text {
-  color: grey;
+  color: rgb(176, 176, 176);
   font-size: 18px;
   line-height: 1.6;
   margin-bottom: 30px;

@@ -59,19 +59,10 @@
     }
 }
 .bg1{
-    background: url('/src/img/capitulos/01.jpeg');
-    background-size: cover;
-    background-position: center;
-}
-.bg2{
-    background: url('/src/img/capitulos/02.jpeg');
-    background-size: cover;
-    background-position: center;
-}
-.bg3{
-    background: url('/src/img/capitulos/03.jpeg');
-    background-size: cover;
-    background-position: center;
+    background: url('/src/img/recursos/pdf.png');
+    background-size: contain;
+    background-position: top;
+    background-repeat: no-repeat;
 }
 .recurso {
     display: flex;

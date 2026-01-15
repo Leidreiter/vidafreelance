@@ -81,8 +81,6 @@ function pauseCarousel() {
   const hasAnim = getComputedStyle(carouselTrack).animationName !== 'none';
   if (hasAnim) {
     carouselTrack.style.animationPlayState = 'paused';
-    // tambien pausar cualquier transición por si acaso
-    carouselTrack.style.transition = 'none';
     console.log('Carrusel pausado');
   }
 }
@@ -204,53 +202,42 @@ function getCarouselStep() {
   return cardWidth + gapValue;
 }
 
-// -------- DRAG-TO-SCROLL DEL CARRUSEL --------
-// let isDown = false;
-// let startX;
-// let scrollLeft;
+// -------- SWIPE TÁCTIL (MOBILE) --------
+let startX = 0;
+let currentX = 0;
+let isDragging = false;
 
-// // Activamos el arrastre en el wrapper del carrusel
-// if (carouselWrapper) {
+if (carouselWrapper && carouselTrack) {
+  carouselWrapper.addEventListener('touchstart', onTouchStart, { passive: true });
+  carouselWrapper.addEventListener('touchmove', onTouchMove, { passive: true });
+  carouselWrapper.addEventListener('touchend', onTouchEnd);
+}
 
-//   carouselWrapper.addEventListener('mousedown', (e) => {
-//     // Evita que al hacer clic en una card se abra el popup inmediatamente
-//     if (e.target.classList.contains('card')) {
-//       e.preventDefault();
-//     }
+function onTouchStart(e) {
+  startX = e.touches[0].clientX;
+  isDragging = true;
+}
 
-//     isDown = true;
-//     carouselWrapper.classList.add('dragging');
+function onTouchMove(e) {
+  if (!isDragging) return;
+  currentX = e.touches[0].clientX;
+}
 
-//     pauseCarousel();
+function onTouchEnd() {
+  if (!isDragging) return;
 
-//     startX = e.pageX - carouselWrapper.offsetLeft;
-//     scrollLeft = carouselWrapper.scrollLeft;
-//   });
+  const diff = currentX - startX;
+  const threshold = 50; // sensibilidad del swipe
 
-//   carouselWrapper.addEventListener('mouseleave', () => {
-//     isDown = false;
-//     carouselWrapper.classList.remove('dragging');
+  if (Math.abs(diff) > threshold) {
+    if (diff > 0) {
+      moveCarousel('prev');
+    } else {
+      moveCarousel('next');
+    }
+  }
 
-//     // reanudar solo si no hay popups abiertos
-//     const anyOpen = Array.from(popups).some(p => p.style.display === 'flex');
-//     if (!anyOpen) resumeCarousel();
-//   });
-
-//   carouselWrapper.addEventListener('mouseup', () => {
-//     isDown = false;
-//     carouselWrapper.classList.remove('dragging');
-
-//     const anyOpen = Array.from(popups).some(p => p.style.display === 'flex');
-//     if (!anyOpen) resumeCarousel();
-//   });
-
-//   carouselWrapper.addEventListener('mousemove', (e) => {
-//     if (!isDown) return;
-//     e.preventDefault();
-
-//     const x = e.pageX - carouselWrapper.offsetLeft;
-//     const walk = (x - startX) * 1.8; // velocidad del desplazamiento
-
-//     carouselWrapper.scrollLeft = scrollLeft - walk;
-//   });
-// }
+  isDragging = false;
+  startX = 0;
+  currentX = 0;
+}
