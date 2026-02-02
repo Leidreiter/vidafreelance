@@ -822,40 +822,39 @@ body > section {
 .footer-bot {
   width: 90%;
   margin: 0 auto;
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
   padding: 2rem 0;
-  row-gap: 2rem;
+  display: flex;
 }
 @media (min-width: 768px) {
   .footer-bot {
     width: 100%;
-    flex-direction: row;
-    align-items: center;
   }
 }
 
 .copyright {
   color: #FFFFFF;
-  margin: 0;
+  display: flex;
+  align-items: center;
+  flex-direction: column;
   text-align: center;
-  text-wrap: balance;
 }
 @media (min-width: 768px) {
   .copyright {
+    flex-direction: row;
     text-wrap: nowrap;
     text-align: left;
   }
 }
 
-.madeby {
-  width: 20rem;
-  margin: 0 auto;
+.devby {
+  width: 120px;
+  vertical-align: middle;
+  margin-left: 0;
+  margin-top: 10px;
 }
 @media (min-width: 768px) {
-  .madeby {
-    margin: 0;
+  .devby {
+    margin-left: 10px;
   }
 }
 
