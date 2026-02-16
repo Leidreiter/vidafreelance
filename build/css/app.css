@@ -979,6 +979,10 @@ body > section {
   background: url("/src/img/capitulos/01.png") center/cover no-repeat;
 }
 
+.cap2 {
+  background: url("/src/img/capitulos/02.png") center/cover no-repeat;
+}
+
 .card-contenido {
   display: flex;
   flex-direction: column;
