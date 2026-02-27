@@ -24,19 +24,35 @@
 }
 
 .headerL {
+  display: flex;
   flex: 1;
   margin: 1rem 0;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+  @include m.tablet{
+    justify-content: flex-start;
+  }
 
   .logo {
     width: auto;
     height: 70px;
-    margin: 0 auto;
+    margin: 0;
 
     @include m.tablet{
       margin: 0;
     }
   }
+  p{
+    color: v.$blanco;
+    font-weight: bold;
+    font-style: italic;
+    line-height: 1;
+    margin: 0;
+    padding: 0;
+  }
 }
+
 
 .headerR {
   flex: 1;

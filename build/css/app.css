@@ -447,18 +447,35 @@ body > section {
 }
 
 .headerL {
+  display: flex;
   flex: 1;
   margin: 1rem 0;
+  gap: 1rem;
+  align-items: center;
+  justify-content: center;
+}
+@media (min-width: 768px) {
+  .headerL {
+    justify-content: flex-start;
+  }
 }
 .headerL .logo {
   width: auto;
   height: 70px;
-  margin: 0 auto;
+  margin: 0;
 }
 @media (min-width: 768px) {
   .headerL .logo {
     margin: 0;
   }
+}
+.headerL p {
+  color: #FFFFFF;
+  font-weight: bold;
+  font-style: italic;
+  line-height: 1;
+  margin: 0;
+  padding: 0;
 }
 
 .headerR {
@@ -748,13 +765,16 @@ body > section {
 }
 
 .logo-footer {
-  width: 12rem;
   flex: 1;
   margin: 0 auto;
   padding: 1rem 0;
 }
+
+.logo-footer img {
+  width: 12rem;
+}
 @media (min-width: 768px) {
-  .logo-footer {
+  .logo-footer img {
     width: 20rem;
   }
 }

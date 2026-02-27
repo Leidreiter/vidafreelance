@@ -23,11 +23,12 @@
     }
 }
 .logo-footer{
-    width: 12rem;
     flex: 1;
     margin: 0 auto;
     padding: 1rem 0;
-
+}
+.logo-footer img{
+    width: 12rem;
     @include m.tablet{
         width: 20rem;
     }
