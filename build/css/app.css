@@ -481,12 +481,13 @@ body > section {
 .headerR {
   flex: 1;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
   margin: 1rem 0;
 }
 @media (min-width: 768px) {
   .headerR {
+    flex-direction: row;
     justify-content: flex-end;
     margin: 0 auto;
     column-gap: 2rem;
@@ -496,6 +497,7 @@ body > section {
 .redes {
   display: flex;
   gap: 2rem;
+  align-items: center;
 }
 .redes a {
   font-size: 3rem;
@@ -511,6 +513,10 @@ body > section {
 .redes a:hover {
   transform: scale(1.2);
   color: #00B8D9;
+}
+.redes .red {
+  width: 2rem;
+  vertical-align: middle;
 }
 
 .menu .btn-menu {

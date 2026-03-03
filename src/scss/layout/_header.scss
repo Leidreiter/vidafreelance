@@ -57,11 +57,12 @@
 .headerR {
   flex: 1;
   display: flex;
+  flex-direction: column;
   align-items: center;
-  justify-content: space-between;
   margin: 1rem 0;
 
   @include m.tablet{
+    flex-direction: row;
     justify-content: flex-end;
     margin: 0 auto;
     column-gap: 2rem;
@@ -72,6 +73,7 @@
 .redes {
   display: flex;
   gap: 2rem;
+  align-items: center;
 
   a {
     font-size: 3rem;
@@ -86,5 +88,9 @@
       transform: scale(1.2);
       color: v.$primario;
     }
+  }
+  .red{
+    width: 2rem;
+    vertical-align: middle;
   }
 }
