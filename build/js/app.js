@@ -31,3 +31,9 @@ if (recursosContainer) {
   });
   recursosObserver.observe(recursosContainer);
 }
+
+// Footer year dinámico
+const yearSpan = document.getElementById('footer-year');
+if (yearSpan) {
+  yearSpan.textContent = new Date().getFullYear();
+}

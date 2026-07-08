@@ -1137,6 +1137,7 @@ body > section {
 @media (max-width: 767px) {
   .recursos-container {
     grid-template-columns: repeat(2, 1fr);
+    gap: 1rem;
   }
 }
 @media (min-width: 768px) {
@@ -1146,96 +1147,93 @@ body > section {
   }
 }
 
-.bg {
-  background-size: 20rem 20rem;
-  background-position: top;
-  background-repeat: no-repeat;
-  background-color: #111111;
-}
-@media (max-width: 767px) {
-  .bg {
-    background-size: 12rem 12rem;
-  }
-}
-
-.webp .bg1 {
-  background-image: url("/src/img/recursos/pdf.webp");
-}
-
-.no-webp .bg1 {
-  background-image: url("/src/img/recursos/pdf.png");
-}
-
-.webp .bg2 {
-  background-image: url("/src/img/recursos/buyer-persona.webp");
-}
-
-.no-webp .bg2 {
-  background-image: url("/src/img/recursos/buyer-persona.png");
-}
-
-.webp .bg3 {
-  background-image: url("/src/img/recursos/check-doc.webp");
-}
-
-.no-webp .bg3 {
-  background-image: url("/src/img/recursos/check-doc.png");
-}
-
-.webp .bg4 {
-  background-image: url("/src/img/recursos/check-list-cfg.webp");
-}
-
-.no-webp .bg4 {
-  background-image: url("/src/img/recursos/check-list-cfg.png");
-}
-
-.webp .bg5 {
-  background-image: url("/src/img/recursos/check-list-dont.webp");
-}
-
-.no-webp .bg5 {
-  background-image: url("/src/img/recursos/check-list-dont.png");
-}
-
-.webp .bg6 {
-  background-image: url("/src/img/recursos/contrato.webp");
-}
-
-.no-webp .bg6 {
-  background-image: url("/src/img/recursos/contrato.png");
-}
-
-.webp .bg7 {
-  background-image: url("/src/img/recursos/presupuesto.webp");
-}
-
-.no-webp .bg7 {
-  background-image: url("/src/img/recursos/presupuesto.png");
-}
-
-.webp .bg8 {
-  background-image: url("/src/img/recursos/check-list.webp");
-}
-
-.no-webp .bg8 {
-  background-image: url("/src/img/recursos/check-list.png");
-}
-
 .recurso {
   display: flex;
   flex-direction: column;
-  justify-content: flex-end;
-  height: 45rem;
   border-radius: 12px;
+  background: #111111;
   opacity: 0;
   transform: translateY(40px);
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
+
+.recurso-image {
+  width: 100%;
+  height: 22rem;
+  background-size: 18rem 18rem;
+  background-position: center;
+  background-repeat: no-repeat;
+  border-radius: 12px 12px 0 0;
+}
 @media (max-width: 767px) {
-  .recurso {
-    height: 28rem;
+  .recurso-image {
+    height: 14rem;
+    background-size: 10rem 10rem;
   }
+}
+
+.webp .recurso-image.bg1 {
+  background-image: url("/src/img/recursos/pdf.webp");
+}
+
+.no-webp .recurso-image.bg1 {
+  background-image: url("/src/img/recursos/pdf.png");
+}
+
+.webp .recurso-image.bg2 {
+  background-image: url("/src/img/recursos/buyer-persona.webp");
+}
+
+.no-webp .recurso-image.bg2 {
+  background-image: url("/src/img/recursos/buyer-persona.png");
+}
+
+.webp .recurso-image.bg3 {
+  background-image: url("/src/img/recursos/check-doc.webp");
+}
+
+.no-webp .recurso-image.bg3 {
+  background-image: url("/src/img/recursos/check-doc.png");
+}
+
+.webp .recurso-image.bg4 {
+  background-image: url("/src/img/recursos/check-list-cfg.webp");
+}
+
+.no-webp .recurso-image.bg4 {
+  background-image: url("/src/img/recursos/check-list-cfg.png");
+}
+
+.webp .recurso-image.bg5 {
+  background-image: url("/src/img/recursos/check-list-dont.webp");
+}
+
+.no-webp .recurso-image.bg5 {
+  background-image: url("/src/img/recursos/check-list-dont.png");
+}
+
+.webp .recurso-image.bg6 {
+  background-image: url("/src/img/recursos/contrato.webp");
+}
+
+.no-webp .recurso-image.bg6 {
+  background-image: url("/src/img/recursos/contrato.png");
+}
+
+.webp .recurso-image.bg7 {
+  background-image: url("/src/img/recursos/presupuesto.webp");
+}
+
+.no-webp .recurso-image.bg7 {
+  background-image: url("/src/img/recursos/presupuesto.png");
+}
+
+.webp .recurso-image.bg8 {
+  background-image: url("/src/img/recursos/check-list.webp");
+}
+
+.no-webp .recurso-image.bg8 {
+  background-image: url("/src/img/recursos/check-list.png");
 }
 
 .recurso-title {
@@ -1243,7 +1241,7 @@ body > section {
   font-family: "Horizon", sans-serif;
   font-size: 0.7em;
   text-align: center;
-  margin: 0;
+  margin: 0 0 0.8rem;
 }
 @media (max-width: 767px) {
   .recurso-title {
@@ -1258,6 +1256,12 @@ body > section {
 .recurso-description {
   color: #FFFFFF;
   text-align: left;
+  margin: 0 0 1.2rem;
+}
+@media (max-width: 767px) {
+  .recurso-description {
+    display: none;
+  }
 }
 
 .recurso-link {
@@ -1277,6 +1281,12 @@ body > section {
   .recurso-link {
     padding: 10px 16px;
     font-size: 1.2rem;
+    font-family: "Montserrat", sans-serif;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 0.6rem;
+    width: 100%;
   }
 }
 .recurso-link:hover {
@@ -1286,17 +1296,11 @@ body > section {
 
 .recursoBG {
   width: 100%;
-  background-color: rgba(0, 0, 0, 0.8784313725);
-  padding: 3rem 2rem;
-}
-@media (max-width: 767px) {
-  .recursoBG {
-    padding: 1.5rem 1rem;
-  }
+  padding: 1.5rem;
 }
 @media (min-width: 768px) {
   .recursoBG {
-    padding: 6rem 2rem;
+    padding: 2rem;
   }
 }
 
