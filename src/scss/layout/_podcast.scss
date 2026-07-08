@@ -37,18 +37,8 @@
     width: 100%;
     height: 6rem;
     margin: 4rem 0;
-    overflow: hidden;
-
-    picture, img {
-      width: 100%;
-      height: 100%;
-      display: block;
-    }
-
-    img {
-      object-fit: contain;
-      object-position: center;
-    }
+    background: url('/src/img/parallax.png') center/contain no-repeat;
+    background-attachment: fixed;
 
     @include m.tablet {
       height: 24rem;

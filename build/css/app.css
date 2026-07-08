@@ -1214,6 +1214,7 @@ body > section {
     justify-content: center;
     gap: 0.6rem;
     width: 100%;
+    text-transform: uppercase;
   }
 }
 .recurso-link:hover {
@@ -1446,16 +1447,8 @@ body > section {
   width: 100%;
   height: 6rem;
   margin: 4rem 0;
-  overflow: hidden;
-}
-.sobre-podcast .sp-parallax picture, .sobre-podcast .sp-parallax img {
-  width: 100%;
-  height: 100%;
-  display: block;
-}
-.sobre-podcast .sp-parallax img {
-  object-fit: contain;
-  object-position: center;
+  background: url("/src/img/parallax.png") center/contain no-repeat;
+  background-attachment: fixed;
 }
 @media (min-width: 768px) {
   .sobre-podcast .sp-parallax {
