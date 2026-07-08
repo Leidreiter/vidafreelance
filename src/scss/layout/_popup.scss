@@ -15,7 +15,26 @@
   align-items: center;
   padding: 2rem;
   z-index: 999;
-  
+
+  &.active {
+    display: flex;
+    animation: popupFadeIn .4s ease both;
+  }
+
+  &.fade-out {
+    display: flex;
+    opacity: 0;
+    transition: opacity .2s ease;
+  }
+}
+
+@keyframes popupFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
 }
 
 .popup-content {
@@ -55,6 +74,18 @@
   flex-direction: column;
   justify-content: space-between;
 }
+.popup-chapter-label {
+  background: v.$primario;
+  color: v.$negro;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-family: v.$fuente_principal;
+  align-self: flex-start;
+  margin-bottom: 0.5rem;
+}
 .popup-left h3{
   font-family: 'Horizon', sans-serif;
   margin: 0;
@@ -86,9 +117,64 @@
   width: 100%;
 }
 
+/* NAVEGACIÓN */
+.popup-nav {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(17, 17, 17, 0.9);
+  color: #fff;
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity .3s ease, background-color .3s ease, color .3s ease, border-color .3s ease;
+
+  &.visible {
+    opacity: 1;
+    pointer-events: auto;
+  }
+
+  &:hover {
+    background: v.$primario;
+    color: v.$negro;
+    border-color: v.$primario;
+  }
+}
+
+.popup-prev {
+  left: 20px;
+}
+
+.popup-next {
+  right: 20px;
+}
+
 /* RESPONSIVE */
 @media (max-width: 800px) {
   .popup-content {
     flex-direction: column;
+  }
+
+  .popup-nav {
+    width: 40px;
+    height: 40px;
+    font-size: 1.4rem;
+  }
+
+  .popup-prev {
+    left: 10px;
+  }
+
+  .popup-next {
+    right: 10px;
   }
 }

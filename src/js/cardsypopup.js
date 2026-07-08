@@ -3,6 +3,9 @@ const cards = document.querySelectorAll('.card');
 const popups = document.querySelectorAll('.popup');
 const closeBtns = document.querySelectorAll('.popup-close');
 
+let currentPopupIndex = -1;
+let popupTransitionTimer = null;
+
 // Helper seguro para seleccionar la pista del carrusel (coincida por id o clase)
 let carouselTrack = document.getElementById('carouselTrack') || document.querySelector('.carousel-track');
 const carouselWrapper = document.querySelector('.carousel-wrapper');
@@ -18,9 +21,74 @@ if (!carouselTrack) {
   console.log('carouselTrack encontrado:', carouselTrack);
 }
 
+// Crear botones de navegación
+const navPrev = document.createElement('button');
+navPrev.className = 'popup-nav popup-prev';
+navPrev.innerHTML = '<i class="fa-solid fa-chevron-left"></i>';
+navPrev.setAttribute('aria-label', 'Capítulo anterior');
+
+const navNext = document.createElement('button');
+navNext.className = 'popup-nav popup-next';
+navNext.innerHTML = '<i class="fa-solid fa-chevron-right"></i>';
+navNext.setAttribute('aria-label', 'Capítulo siguiente');
+
+document.body.appendChild(navPrev);
+document.body.appendChild(navNext);
+
+function finishPopupTransition() {
+  if (popupTransitionTimer) {
+    clearTimeout(popupTransitionTimer);
+    popupTransitionTimer = null;
+  }
+  popups.forEach(p => p.classList.remove('active', 'fade-out'));
+}
+
+function openPopup(index) {
+  if (index < 0 || index >= popups.length) return;
+  finishPopupTransition();
+  currentPopupIndex = index;
+  popups[currentPopupIndex].classList.add('active');
+  updateNavButtons();
+  pauseCarousel();
+}
+
+function closeCurrentPopup() {
+  if (currentPopupIndex < 0 || popupTransitionTimer) return;
+  const popup = popups[currentPopupIndex];
+  popup.classList.add('fade-out');
+  popupTransitionTimer = setTimeout(() => {
+    popups.forEach(p => p.classList.remove('active', 'fade-out'));
+    currentPopupIndex = -1;
+    updateNavButtons();
+    resumeCarousel();
+    popupTransitionTimer = null;
+  }, 250);
+}
+
+function navigatePopup(direction) {
+  if (currentPopupIndex < 0 || popupTransitionTimer) return;
+  const nextIndex = currentPopupIndex + (direction === 'next' ? 1 : -1);
+  if (nextIndex < 0 || nextIndex >= popups.length) return;
+  const prevPopup = popups[currentPopupIndex];
+  prevPopup.classList.add('fade-out');
+  popupTransitionTimer = setTimeout(() => {
+    prevPopup.classList.remove('active', 'fade-out');
+    currentPopupIndex = nextIndex;
+    popups[currentPopupIndex].classList.add('active');
+    updateNavButtons();
+    popupTransitionTimer = null;
+  }, 250);
+}
+
+function updateNavButtons() {
+  const isOpen = currentPopupIndex >= 0;
+  navPrev.classList.toggle('visible', isOpen && currentPopupIndex > 0);
+  navNext.classList.toggle('visible', isOpen && currentPopupIndex < popups.length - 1);
+}
+
 // Abrir popup
 if (cards && cards.length) {
-  cards.forEach(card => {
+  cards.forEach((card, i) => {
     card.addEventListener('click', () => {
       const id = card.getAttribute('data-popup');
       const popup = document.getElementById(id);
@@ -30,17 +98,16 @@ if (cards && cards.length) {
         return;
       }
 
-      popup.style.display = 'flex';
-      pauseCarousel();
+      // Encontrar el índice
+      const index = Array.from(popups).indexOf(popup);
+      if (index >= 0) openPopup(index);
     });
 
-    // Pausar al hacer hover sobre la card (fallback por si el wrapper falla)
     card.addEventListener('mouseenter', () => {
       pauseCarousel();
     });
     card.addEventListener('mouseleave', () => {
-      // Si hay un popup abierto, no reanudes.
-      const anyOpen = Array.from(document.querySelectorAll('.popup')).some(p => p.style.display === 'flex');
+      const anyOpen = document.querySelector('.popup.active');
       if (!anyOpen) resumeCarousel();
     });
   });
@@ -48,36 +115,44 @@ if (cards && cards.length) {
   console.warn('No se encontraron .card en el DOM.');
 }
 
-// Cerrar popup
+// Cerrar con botón close (si existe)
 if (closeBtns && closeBtns.length) {
   closeBtns.forEach(btn => {
     btn.addEventListener('click', () => {
-      // suponiendo estructura: .popup > .popup-content > button.popup-close
-      const popup = btn.closest('.popup');
-      if (popup) {
-        popup.style.display = 'none';
-      }
-      resumeCarousel();
+      closeCurrentPopup();
     });
   });
 }
 
-// Cerrar clickeando fuera
-if (popups && popups.length) {
-  popups.forEach(p => {
-    p.addEventListener('click', e => {
-      if (e.target === p) {
-        p.style.display = 'none';
-        resumeCarousel();
-      }
-    });
+// Cerrar clickeando fuera del contenido
+popups.forEach(p => {
+  p.addEventListener('click', e => {
+    if (e.target === p) {
+      closeCurrentPopup();
+    }
   });
-}
+});
+
+// Navegación con botones
+navPrev.addEventListener('click', () => navigatePopup('prev'));
+navNext.addEventListener('click', () => navigatePopup('next'));
+
+// Cerrar con tecla Escape
+document.addEventListener('keydown', e => {
+  if (e.key === 'Escape') {
+    closeCurrentPopup();
+  }
+  if (e.key === 'ArrowLeft' && currentPopupIndex >= 0) {
+    navigatePopup('prev');
+  }
+  if (e.key === 'ArrowRight' && currentPopupIndex >= 0) {
+    navigatePopup('next');
+  }
+});
 
 // -------- CARRUSEL CONTROL DINÁMICO --------
 function pauseCarousel() {
   if (!carouselTrack || isCarouselManual) return;
-  // Solo pausa si tiene animation
   const hasAnim = getComputedStyle(carouselTrack).animationName !== 'none';
   if (hasAnim) {
     carouselTrack.style.animationPlayState = 'paused';
@@ -95,8 +170,7 @@ function resumeCarousel() {
 if (carouselWrapper) {
   carouselWrapper.addEventListener('mouseenter', pauseCarousel);
   carouselWrapper.addEventListener('mouseleave', () => {
-    // Si hay popup abierto, no reanudar
-    const anyOpen = Array.from(document.querySelectorAll('.popup')).some(p => p.style.display === 'flex');
+    const anyOpen = document.querySelector('.popup.active');
     if (!anyOpen) resumeCarousel();
   });
   console.log('Listeners de hover agregados en .carousel-wrapper');
@@ -227,7 +301,7 @@ function onTouchEnd() {
   if (!isDragging) return;
 
   const diff = currentX - startX;
-  const threshold = 50; // sensibilidad del swipe
+  const threshold = 50;
 
   if (Math.abs(diff) > threshold) {
     if (diff > 0) {
@@ -241,3 +315,24 @@ function onTouchEnd() {
   startX = 0;
   currentX = 0;
 }
+
+// -------- SWIPE TÁCTIL EN POPUPS --------
+let popupSwipeStartX = 0;
+let popupSwipeStartY = 0;
+
+popups.forEach(p => {
+  p.addEventListener('touchstart', e => {
+    popupSwipeStartX = e.changedTouches[0].screenX;
+    popupSwipeStartY = e.changedTouches[0].screenY;
+  }, { passive: true });
+
+  p.addEventListener('touchend', e => {
+    if (currentPopupIndex < 0) return;
+    const diffX = e.changedTouches[0].screenX - popupSwipeStartX;
+    const diffY = e.changedTouches[0].screenY - popupSwipeStartY;
+    if (Math.abs(diffX) > 50 && Math.abs(diffX) > Math.abs(diffY) * 1.5) {
+      if (diffX > 0) navigatePopup('prev');
+      else navigatePopup('next');
+    }
+  }, { passive: true });
+});

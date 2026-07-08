@@ -1002,6 +1002,11 @@ body > section {
   border-radius: 12px 12px 0 0;
   margin-bottom: 15px;
 }
+@media (max-width: 767px) {
+  .imagen-capitulo {
+    height: 16rem;
+  }
+}
 
 .badge {
   position: absolute;
@@ -1124,16 +1129,32 @@ body > section {
   width: 100%;
   max-width: 144rem;
   margin: 0 auto;
-  display: flex;
-  justify-content: space-between;
-  flex-direction: column;
+  display: grid;
+  grid-template-columns: 1fr;
   gap: 2rem;
   padding: 0;
 }
+@media (max-width: 767px) {
+  .recursos-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
 @media (min-width: 768px) {
   .recursos-container {
-    flex-direction: row;
+    grid-template-columns: repeat(4, 1fr);
     padding: 4rem 0;
+  }
+}
+
+.bg {
+  background-size: 20rem 20rem;
+  background-position: top;
+  background-repeat: no-repeat;
+  background-color: #111111;
+}
+@media (max-width: 767px) {
+  .bg {
+    background-size: 12rem 12rem;
   }
 }
 
@@ -1145,12 +1166,60 @@ body > section {
   background-image: url("/src/img/recursos/pdf.png");
 }
 
-.bg1 {
-  background-image: url("/src/img/recursos/pdf.webp");
-  background-size: 20rem 20rem;
-  background-position: top;
-  background-repeat: no-repeat;
-  background-color: #111111;
+.webp .bg2 {
+  background-image: url("/src/img/recursos/buyer-persona.webp");
+}
+
+.no-webp .bg2 {
+  background-image: url("/src/img/recursos/buyer-persona.png");
+}
+
+.webp .bg3 {
+  background-image: url("/src/img/recursos/check-doc.webp");
+}
+
+.no-webp .bg3 {
+  background-image: url("/src/img/recursos/check-doc.png");
+}
+
+.webp .bg4 {
+  background-image: url("/src/img/recursos/check-list-cfg.webp");
+}
+
+.no-webp .bg4 {
+  background-image: url("/src/img/recursos/check-list-cfg.png");
+}
+
+.webp .bg5 {
+  background-image: url("/src/img/recursos/check-list-dont.webp");
+}
+
+.no-webp .bg5 {
+  background-image: url("/src/img/recursos/check-list-dont.png");
+}
+
+.webp .bg6 {
+  background-image: url("/src/img/recursos/contrato.webp");
+}
+
+.no-webp .bg6 {
+  background-image: url("/src/img/recursos/contrato.png");
+}
+
+.webp .bg7 {
+  background-image: url("/src/img/recursos/presupuesto.webp");
+}
+
+.no-webp .bg7 {
+  background-image: url("/src/img/recursos/presupuesto.png");
+}
+
+.webp .bg8 {
+  background-image: url("/src/img/recursos/check-list.webp");
+}
+
+.no-webp .bg8 {
+  background-image: url("/src/img/recursos/check-list.png");
 }
 
 .recurso {
@@ -1163,12 +1232,23 @@ body > section {
   transform: translateY(40px);
   transition: opacity 0.8s ease, transform 0.8s ease;
 }
+@media (max-width: 767px) {
+  .recurso {
+    height: 28rem;
+  }
+}
 
 .recurso-title {
   color: #FFFFFF;
   font-family: "Horizon", sans-serif;
+  font-size: 0.7em;
   text-align: center;
   margin: 0;
+}
+@media (max-width: 767px) {
+  .recurso-title {
+    font-size: 1rem;
+  }
 }
 
 .H2 {
@@ -1193,6 +1273,12 @@ body > section {
   border-radius: 12px 0 12px 0;
   transition: color 0.3s ease, border-color 0.3s ease;
 }
+@media (max-width: 767px) {
+  .recurso-link {
+    padding: 10px 16px;
+    font-size: 1.2rem;
+  }
+}
 .recurso-link:hover {
   color: #00B8D9;
   border: 2px solid #00B8D9;
@@ -1202,6 +1288,11 @@ body > section {
   width: 100%;
   background-color: rgba(0, 0, 0, 0.8784313725);
   padding: 3rem 2rem;
+}
+@media (max-width: 767px) {
+  .recursoBG {
+    padding: 1.5rem 1rem;
+  }
 }
 @media (min-width: 768px) {
   .recursoBG {
@@ -1224,7 +1315,24 @@ body > section {
   padding: 2rem;
   z-index: 999;
 }
+.popup.active {
+  display: flex;
+  animation: popupFadeIn 0.4s ease both;
+}
+.popup.fade-out {
+  display: flex;
+  opacity: 0;
+  transition: opacity 0.2s ease;
+}
 
+@keyframes popupFadeIn {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
 .popup-content {
   position: relative;
   border-radius: 4rem 0 4rem 0;
@@ -1266,6 +1374,19 @@ body > section {
   justify-content: space-between;
 }
 
+.popup-chapter-label {
+  background: #00B8D9;
+  color: #000000;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-family: "Montserrat", sans-serif;
+  align-self: flex-start;
+  margin-bottom: 0.5rem;
+}
+
 .popup-left h3 {
   font-family: "Horizon", sans-serif;
   margin: 0;
@@ -1304,10 +1425,60 @@ body > section {
   width: 100%;
 }
 
+/* NAVEGACIÓN */
+.popup-nav {
+  position: fixed;
+  top: 50%;
+  transform: translateY(-50%);
+  z-index: 1000;
+  width: 50px;
+  height: 50px;
+  border-radius: 50%;
+  border: 1px solid rgba(255, 255, 255, 0.4);
+  background: rgba(17, 17, 17, 0.9);
+  color: #fff;
+  font-size: 1.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  opacity: 0;
+  pointer-events: none;
+  transition: opacity 0.3s ease, background-color 0.3s ease, color 0.3s ease, border-color 0.3s ease;
+}
+.popup-nav.visible {
+  opacity: 1;
+  pointer-events: auto;
+}
+.popup-nav:hover {
+  background: #00B8D9;
+  color: #000000;
+  border-color: #00B8D9;
+}
+
+.popup-prev {
+  left: 20px;
+}
+
+.popup-next {
+  right: 20px;
+}
+
 /* RESPONSIVE */
 @media (max-width: 800px) {
   .popup-content {
     flex-direction: column;
+  }
+  .popup-nav {
+    width: 40px;
+    height: 40px;
+    font-size: 1.4rem;
+  }
+  .popup-prev {
+    left: 10px;
+  }
+  .popup-next {
+    right: 10px;
   }
 }
 .sobre-podcast {
