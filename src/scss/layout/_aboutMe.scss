@@ -50,8 +50,18 @@
   /* Columna derecha */
   .sm-right {
     flex: 1;
-    padding: 20rem 0;
-    background: url('/src/img/Martin_Leidreiter.webp') center/cover no-repeat;
+    overflow: hidden;
+
+    picture, img {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    img {
+      object-fit: cover;
+      object-position: center;
+    }
   }
 
   /* Sponsors título */
@@ -154,20 +164,6 @@
   }
 }
 
-.webp .sm-right {
-  background-image: url('/src/img/Martin_Leidreiter.webp');
-}
-.no-webp .sm-right {
-  background-image: url('/src/img/Martin_Leidreiter.jpg');
-}
-
-/* Fade-up animation */
-.fade-up {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-  transition: opacity .8s ease, transform .8s ease;
-}
-
 @media (max-width: 900px) {
   .sobre-mi-container {
     grid-template-columns: 1fr;
@@ -176,6 +172,13 @@
   .sm-right {
     height: 300px;
   }
+}
+
+/* Fade-up animation */
+.fade-up {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  transition: opacity .8s ease, transform .8s ease;
 }
 
 .sm-btn {

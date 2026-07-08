@@ -33,22 +33,22 @@
     margin: 0 auto;
   }
 
-  // Si el navegador soporta WebP
-  .webp .sp-parallax {
-    background-image: url('/src/img/parallax.webp');
-  }
-
-  // Si NO soporta WebP (fallback JPG/PNG)
-  .no-webp .sp-parallax {
-    background-image: url('/src/img/parallax.png');
-  }
-
   .sp-parallax {
     width: 100%;
     height: 6rem;
     margin: 4rem 0;
-    background: url('/src/img/parallax.webp') center/contain no-repeat;
-    background-attachment: fixed;
+    overflow: hidden;
+
+    picture, img {
+      width: 100%;
+      height: 100%;
+      display: block;
+    }
+
+    img {
+      object-fit: contain;
+      object-position: center;
+    }
 
     @include m.tablet {
       height: 24rem;

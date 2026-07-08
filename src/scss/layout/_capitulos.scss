@@ -109,6 +109,17 @@
   height: 26rem;
   border-radius: 12px 12px 0 0;
   margin-bottom: 15px;
+  overflow: hidden;
+
+  picture, img {
+    width: 100%;
+    height: 100%;
+    display: block;
+  }
+
+  img {
+    object-fit: cover;
+  }
 
     @media (max-width: 767px) {
       height: 16rem;
@@ -128,24 +139,8 @@
   border-radius: 4px;
   font-family: v.$fuente_principal;
 }
-.webp .cap1 {
-  background: url('/src/img/capitulos/01.webp') center/cover no-repeat;
-}
-.no-webp .cap1 {
-  background: url('/src/img/capitulos/01.png') center/cover no-repeat;
-}
-.cap1 {
-  background: url('/src/img/capitulos/01.webp') center/cover no-repeat;
-}
-.webp .cap2 {
-  background: url('/src/img/capitulos/02.webp') center/cover no-repeat;
-}
-.no-webp .cap2 {
-  background: url('/src/img/capitulos/02.png') center/cover no-repeat;
-}
-.cap2 {
-  background: url('/src/img/capitulos/02.webp') center/cover no-repeat;
-}
+
+
 
 
 .card-contenido{

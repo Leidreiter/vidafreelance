@@ -1001,6 +1001,15 @@ body > section {
   height: 26rem;
   border-radius: 12px 12px 0 0;
   margin-bottom: 15px;
+  overflow: hidden;
+}
+.imagen-capitulo picture, .imagen-capitulo img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.imagen-capitulo img {
+  object-fit: cover;
 }
 @media (max-width: 767px) {
   .imagen-capitulo {
@@ -1020,30 +1029,6 @@ body > section {
   padding: 4px 10px;
   border-radius: 4px;
   font-family: "Montserrat", sans-serif;
-}
-
-.webp .cap1 {
-  background: url("/src/img/capitulos/01.webp") center/cover no-repeat;
-}
-
-.no-webp .cap1 {
-  background: url("/src/img/capitulos/01.png") center/cover no-repeat;
-}
-
-.cap1 {
-  background: url("/src/img/capitulos/01.webp") center/cover no-repeat;
-}
-
-.webp .cap2 {
-  background: url("/src/img/capitulos/02.webp") center/cover no-repeat;
-}
-
-.no-webp .cap2 {
-  background: url("/src/img/capitulos/02.png") center/cover no-repeat;
-}
-
-.cap2 {
-  background: url("/src/img/capitulos/02.webp") center/cover no-repeat;
 }
 
 .card-contenido {
@@ -1160,80 +1145,22 @@ body > section {
 .recurso-image {
   width: 100%;
   height: 22rem;
-  background-size: 18rem 18rem;
-  background-position: center;
-  background-repeat: no-repeat;
   border-radius: 12px 12px 0 0;
+  overflow: hidden;
+}
+.recurso-image picture, .recurso-image img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.recurso-image img {
+  object-fit: contain;
+  object-position: center;
 }
 @media (max-width: 767px) {
   .recurso-image {
     height: 14rem;
-    background-size: 10rem 10rem;
   }
-}
-
-.webp .recurso-image.bg1 {
-  background-image: url("/src/img/recursos/pdf.webp");
-}
-
-.no-webp .recurso-image.bg1 {
-  background-image: url("/src/img/recursos/pdf.png");
-}
-
-.webp .recurso-image.bg2 {
-  background-image: url("/src/img/recursos/buyer-persona.webp");
-}
-
-.no-webp .recurso-image.bg2 {
-  background-image: url("/src/img/recursos/buyer-persona.png");
-}
-
-.webp .recurso-image.bg3 {
-  background-image: url("/src/img/recursos/check-doc.webp");
-}
-
-.no-webp .recurso-image.bg3 {
-  background-image: url("/src/img/recursos/check-doc.png");
-}
-
-.webp .recurso-image.bg4 {
-  background-image: url("/src/img/recursos/check-list-cfg.webp");
-}
-
-.no-webp .recurso-image.bg4 {
-  background-image: url("/src/img/recursos/check-list-cfg.png");
-}
-
-.webp .recurso-image.bg5 {
-  background-image: url("/src/img/recursos/check-list-dont.webp");
-}
-
-.no-webp .recurso-image.bg5 {
-  background-image: url("/src/img/recursos/check-list-dont.png");
-}
-
-.webp .recurso-image.bg6 {
-  background-image: url("/src/img/recursos/contrato.webp");
-}
-
-.no-webp .recurso-image.bg6 {
-  background-image: url("/src/img/recursos/contrato.png");
-}
-
-.webp .recurso-image.bg7 {
-  background-image: url("/src/img/recursos/presupuesto.webp");
-}
-
-.no-webp .recurso-image.bg7 {
-  background-image: url("/src/img/recursos/presupuesto.png");
-}
-
-.webp .recurso-image.bg8 {
-  background-image: url("/src/img/recursos/check-list.webp");
-}
-
-.no-webp .recurso-image.bg8 {
-  background-image: url("/src/img/recursos/check-list.png");
 }
 
 .recurso-title {
@@ -1515,18 +1442,20 @@ body > section {
   background-color: rgb(176, 176, 176);
   margin: 0 auto;
 }
-.sobre-podcast .webp .sp-parallax {
-  background-image: url("/src/img/parallax.webp");
-}
-.sobre-podcast .no-webp .sp-parallax {
-  background-image: url("/src/img/parallax.png");
-}
 .sobre-podcast .sp-parallax {
   width: 100%;
   height: 6rem;
   margin: 4rem 0;
-  background: url("/src/img/parallax.webp") center/contain no-repeat;
-  background-attachment: fixed;
+  overflow: hidden;
+}
+.sobre-podcast .sp-parallax picture, .sobre-podcast .sp-parallax img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.sobre-podcast .sp-parallax img {
+  object-fit: contain;
+  object-position: center;
 }
 @media (min-width: 768px) {
   .sobre-podcast .sp-parallax {
@@ -1639,8 +1568,16 @@ body > section {
 }
 .sobre-mi .sm-right {
   flex: 1;
-  padding: 20rem 0;
-  background: url("/src/img/Martin_Leidreiter.webp") center/cover no-repeat;
+  overflow: hidden;
+}
+.sobre-mi .sm-right picture, .sobre-mi .sm-right img {
+  width: 100%;
+  height: 100%;
+  display: block;
+}
+.sobre-mi .sm-right img {
+  object-fit: cover;
+  object-position: center;
 }
 .sobre-mi {
   /* Sponsors título */
@@ -1743,21 +1680,6 @@ body > section {
   }
 }
 
-.webp .sm-right {
-  background-image: url("/src/img/Martin_Leidreiter.webp");
-}
-
-.no-webp .sm-right {
-  background-image: url("/src/img/Martin_Leidreiter.jpg");
-}
-
-/* Fade-up animation */
-.fade-up {
-  opacity: 1 !important;
-  transform: translateY(0) !important;
-  transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
 @media (max-width: 900px) {
   .sobre-mi-container {
     grid-template-columns: 1fr;
@@ -1766,6 +1688,13 @@ body > section {
     height: 300px;
   }
 }
+/* Fade-up animation */
+.fade-up {
+  opacity: 1 !important;
+  transform: translateY(0) !important;
+  transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
 .sm-btn {
   display: block;
   padding: 14px 32px;
