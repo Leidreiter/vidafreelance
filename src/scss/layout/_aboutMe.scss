@@ -51,7 +51,7 @@
   .sm-right {
     flex: 1;
     padding: 20rem 0;
-    background: url('/src/img/Martin_Leidreiter.jpg') center/cover no-repeat;
+    background: url('/src/img/Martin_Leidreiter.webp') center/cover no-repeat;
   }
 
   /* Sponsors título */
@@ -62,29 +62,103 @@
     color: grey;
     text-transform: uppercase;
     letter-spacing: 2px;
+
+    @include m.tablet {
+      margin-top: 100px;
+      margin-bottom: 60px;
+      font-size: 2rem;
+    }
   }
 
   /* Logos */
   .sponsors-logos {
     width: 90%;
     max-width: 144rem;
-    display: flex;
-    justify-content: center;
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
     gap: 2rem;
-    flex-wrap: wrap;
-    @include m.tablet{
+    justify-items: center;
+    align-items: center;
+
+    @include m.tablet {
+      display: flex;
+      flex-direction: row;
       justify-content: space-between;
+      flex-wrap: wrap;
     }
+  }
+
+  .sponsors-logos a {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 8px;
+    position: relative;
   }
 
   .sponsor {
     opacity: 0;
     transform: translateY(20px);
-    height: 6rem;       // la altura que vos quieras
+    height: 5rem;
     width: auto;
     display: block;
     object-fit: contain;
+
+    @include m.tablet {
+      height: 7rem;
+    }
   }
+
+  .tooltip-text {
+    font-size: 1.2rem;
+    color: v.$gris;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    text-align: center;
+
+    @include m.tablet {
+      position: absolute;
+      bottom: calc(100% + 16px);
+      left: 50%;
+      transform: translateX(-50%) translateY(4px);
+      background: v.$grisOscuro;
+      color: v.$blanco;
+      padding: 8px 16px;
+      border-radius: 8px;
+      border: 1px solid v.$primario;
+      white-space: nowrap;
+      font-size: 1.2rem;
+      font-family: 'Horizon', sans-serif;
+      opacity: 0;
+      pointer-events: none;
+      transition: opacity .25s ease, transform .25s ease;
+      box-shadow: 0 4px 20px rgba(0,0,0,.5);
+
+      &::after {
+        content: '';
+        position: absolute;
+        top: 100%;
+        left: 50%;
+        transform: translateX(-50%);
+        border: 6px solid transparent;
+        border-top-color: v.$primario;
+      }
+    }
+  }
+
+  .sponsors-logos a:hover .tooltip-text {
+    @include m.tablet {
+      opacity: 1;
+      transform: translateX(-50%) translateY(0);
+    }
+  }
+}
+
+.webp .sm-right {
+  background-image: url('/src/img/Martin_Leidreiter.webp');
+}
+.no-webp .sm-right {
+  background-image: url('/src/img/Martin_Leidreiter.jpg');
 }
 
 /* Fade-up animation */
@@ -102,10 +176,6 @@
   .sm-right {
     height: 300px;
   }
-
-  .sponsors-logos {
-    justify-content: center;
-  }
 }
 
 .sm-btn {
@@ -120,6 +190,7 @@
   border: 2px solid v.$blanco;
   border-radius: 12px 0 12px 0;
   align-self: center;
+  transition: color .3s ease, border-color .3s ease;
 
   @include m.tablet{
     display: inline-block;

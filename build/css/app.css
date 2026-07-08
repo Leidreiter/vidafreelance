@@ -872,6 +872,11 @@ body > section {
   }
 }
 
+.icon-heart {
+  color: #00B8D9;
+  margin: 0 8px;
+}
+
 .devby {
   width: 48px;
   vertical-align: middle;
@@ -956,23 +961,19 @@ body > section {
   display: flex;
   gap: 20px;
   padding: 20px;
-  animation: none;
+  animation: moveCarousel 40s linear infinite;
 }
-
-@media (max-width: 768px) {
+@media (min-width: 768px) {
   .carousel-track {
-    animation: moveCarousel 20s linear infinite;
+    animation-duration: 60s;
   }
 }
+
 .carousel-track.is-manual {
   animation: none !important;
+  transition: transform 0.5s ease;
 }
 
-@media (max-width: 768px) {
-  .carousel-track.is-manual {
-    transition: transform 0.5s ease;
-  }
-}
 @keyframes moveCarousel {
   from {
     transform: translateX(0);
@@ -995,18 +996,49 @@ body > section {
 }
 
 .imagen-capitulo {
+  position: relative;
   width: 100%;
   height: 26rem;
   border-radius: 12px 12px 0 0;
   margin-bottom: 15px;
 }
 
-.cap1 {
+.badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: #00B8D9;
+  color: #000000;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-family: "Montserrat", sans-serif;
+}
+
+.webp .cap1 {
+  background: url("/src/img/capitulos/01.webp") center/cover no-repeat;
+}
+
+.no-webp .cap1 {
   background: url("/src/img/capitulos/01.png") center/cover no-repeat;
 }
 
-.cap2 {
+.cap1 {
+  background: url("/src/img/capitulos/01.webp") center/cover no-repeat;
+}
+
+.webp .cap2 {
+  background: url("/src/img/capitulos/02.webp") center/cover no-repeat;
+}
+
+.no-webp .cap2 {
   background: url("/src/img/capitulos/02.png") center/cover no-repeat;
+}
+
+.cap2 {
+  background: url("/src/img/capitulos/02.webp") center/cover no-repeat;
 }
 
 .card-contenido {
@@ -1105,8 +1137,16 @@ body > section {
   }
 }
 
+.webp .bg1 {
+  background-image: url("/src/img/recursos/pdf.webp");
+}
+
+.no-webp .bg1 {
+  background-image: url("/src/img/recursos/pdf.png");
+}
+
 .bg1 {
-  background: url("/src/img/recursos/pdf.png");
+  background-image: url("/src/img/recursos/pdf.webp");
   background-size: 20rem 20rem;
   background-position: top;
   background-repeat: no-repeat;
@@ -1119,6 +1159,9 @@ body > section {
   justify-content: flex-end;
   height: 45rem;
   border-radius: 12px;
+  opacity: 0;
+  transform: translateY(40px);
+  transition: opacity 0.8s ease, transform 0.8s ease;
 }
 
 .recurso-title {
@@ -1148,6 +1191,7 @@ body > section {
   text-align: center;
   border: 2px solid #FFFFFF;
   border-radius: 12px 0 12px 0;
+  transition: color 0.3s ease, border-color 0.3s ease;
 }
 .recurso-link:hover {
   color: #00B8D9;
@@ -1421,7 +1465,7 @@ body > section {
 .sobre-mi .sm-right {
   flex: 1;
   padding: 20rem 0;
-  background: url("/src/img/Martin_Leidreiter.jpg") center/cover no-repeat;
+  background: url("/src/img/Martin_Leidreiter.webp") center/cover no-repeat;
 }
 .sobre-mi {
   /* Sponsors título */
@@ -1434,29 +1478,102 @@ body > section {
   text-transform: uppercase;
   letter-spacing: 2px;
 }
+@media (min-width: 768px) {
+  .sobre-mi .sponsors-title {
+    margin-top: 100px;
+    margin-bottom: 60px;
+    font-size: 2rem;
+  }
+}
 .sobre-mi {
   /* Logos */
 }
 .sobre-mi .sponsors-logos {
   width: 90%;
   max-width: 144rem;
-  display: flex;
-  justify-content: center;
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
   gap: 2rem;
-  flex-wrap: wrap;
+  justify-items: center;
+  align-items: center;
 }
 @media (min-width: 768px) {
   .sobre-mi .sponsors-logos {
+    display: flex;
+    flex-direction: row;
     justify-content: space-between;
+    flex-wrap: wrap;
   }
+}
+.sobre-mi .sponsors-logos a {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 8px;
+  position: relative;
 }
 .sobre-mi .sponsor {
   opacity: 0;
   transform: translateY(20px);
-  height: 6rem;
+  height: 5rem;
   width: auto;
   display: block;
   object-fit: contain;
+}
+@media (min-width: 768px) {
+  .sobre-mi .sponsor {
+    height: 7rem;
+  }
+}
+.sobre-mi .tooltip-text {
+  font-size: 1.2rem;
+  color: rgb(176, 176, 176);
+  text-transform: uppercase;
+  letter-spacing: 1px;
+  text-align: center;
+}
+@media (min-width: 768px) {
+  .sobre-mi .tooltip-text {
+    position: absolute;
+    bottom: calc(100% + 16px);
+    left: 50%;
+    transform: translateX(-50%) translateY(4px);
+    background: #111111;
+    color: #FFFFFF;
+    padding: 8px 16px;
+    border-radius: 8px;
+    border: 1px solid #00B8D9;
+    white-space: nowrap;
+    font-size: 1.2rem;
+    font-family: "Horizon", sans-serif;
+    opacity: 0;
+    pointer-events: none;
+    transition: opacity 0.25s ease, transform 0.25s ease;
+    box-shadow: 0 4px 20px rgba(0, 0, 0, 0.5);
+  }
+  .sobre-mi .tooltip-text::after {
+    content: "";
+    position: absolute;
+    top: 100%;
+    left: 50%;
+    transform: translateX(-50%);
+    border: 6px solid transparent;
+    border-top-color: #00B8D9;
+  }
+}
+@media (min-width: 768px) {
+  .sobre-mi .sponsors-logos a:hover .tooltip-text {
+    opacity: 1;
+    transform: translateX(-50%) translateY(0);
+  }
+}
+
+.webp .sm-right {
+  background-image: url("/src/img/Martin_Leidreiter.webp");
+}
+
+.no-webp .sm-right {
+  background-image: url("/src/img/Martin_Leidreiter.jpg");
 }
 
 /* Fade-up animation */
@@ -1473,9 +1590,6 @@ body > section {
   .sm-right {
     height: 300px;
   }
-  .sponsors-logos {
-    justify-content: center;
-  }
 }
 .sm-btn {
   display: block;
@@ -1489,6 +1603,7 @@ body > section {
   border: 2px solid #FFFFFF;
   border-radius: 12px 0 12px 0;
   align-self: center;
+  transition: color 0.3s ease, border-color 0.3s ease;
 }
 @media (min-width: 768px) {
   .sm-btn {

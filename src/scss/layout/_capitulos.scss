@@ -73,23 +73,16 @@
   display: flex;
   gap: 20px;
   padding: 20px;
-  animation: none;
-}
+  animation: moveCarousel 40s linear infinite;
 
-@media (max-width: 768px) {
-  .carousel-track {
-    animation: moveCarousel 20s linear infinite;
+  @include m.tablet {
+    animation-duration: 60s;
   }
 }
 
 .carousel-track.is-manual {
   animation: none !important;
-}
-
-@media (max-width: 768px) {
-  .carousel-track.is-manual {
-    transition: transform .5s ease;
-  }
+  transition: transform .5s ease;
 }
 
 @keyframes moveCarousel {
@@ -111,16 +104,43 @@
 }
 
 .imagen-capitulo {
+  position: relative;
   width: 100%;
   height: 26rem;
   border-radius: 12px 12px 0 0;
   margin-bottom: 15px;
 }
-.cap1 {
+
+.badge {
+  position: absolute;
+  top: 10px;
+  left: 10px;
+  background: v.$primario;
+  color: v.$negro;
+  font-size: 1.2rem;
+  font-weight: 700;
+  text-transform: uppercase;
+  padding: 4px 10px;
+  border-radius: 4px;
+  font-family: v.$fuente_principal;
+}
+.webp .cap1 {
+  background: url('/src/img/capitulos/01.webp') center/cover no-repeat;
+}
+.no-webp .cap1 {
   background: url('/src/img/capitulos/01.png') center/cover no-repeat;
 }
-.cap2 {
+.cap1 {
+  background: url('/src/img/capitulos/01.webp') center/cover no-repeat;
+}
+.webp .cap2 {
+  background: url('/src/img/capitulos/02.webp') center/cover no-repeat;
+}
+.no-webp .cap2 {
   background: url('/src/img/capitulos/02.png') center/cover no-repeat;
+}
+.cap2 {
+  background: url('/src/img/capitulos/02.webp') center/cover no-repeat;
 }
 
 

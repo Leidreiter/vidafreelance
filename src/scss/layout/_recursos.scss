@@ -58,8 +58,14 @@
         padding: 4rem 0;
     }
 }
+.webp .bg1 {
+    background-image: url('/src/img/recursos/pdf.webp');
+}
+.no-webp .bg1 {
+    background-image: url('/src/img/recursos/pdf.png');
+}
 .bg1{
-    background: url('/src/img/recursos/pdf.png');
+    background-image: url('/src/img/recursos/pdf.webp');
     background-size: 20rem 20rem;
     background-position: top;
     background-repeat: no-repeat;
@@ -71,6 +77,9 @@
     justify-content: flex-end;
     height: 45rem;
     border-radius: 12px;
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity .8s ease, transform .8s ease;
 }
 
 .recurso-title {
@@ -99,6 +108,7 @@
     text-align: center;
     border: 2px solid v.$blanco;
     border-radius: 12px 0 12px 0;
+    transition: color .3s ease, border-color .3s ease;
 
     &:hover {
         color: v.$primario;
