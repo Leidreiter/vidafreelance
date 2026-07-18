@@ -872,6 +872,10 @@ body > section {
   }
 }
 
+.copyright span {
+  margin-right: 8px;
+}
+
 .icon-heart {
   color: #00B8D9;
   margin: 0 8px;
